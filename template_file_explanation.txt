@@ -1,4 +1,6 @@
-### Objective:
+Template File Explanation :  template.py
+
+Objective:
 
 The script creates a project folder and a predefined set of subdirectories and files required 
 for a typical Python project. This structure often includes modules for components, configuration,
@@ -6,52 +8,43 @@ constants, entities, exceptions, logging, pipelines, utilities, and others.
 Additionally, it creates configuration files (`config.yaml`), 
 a schema file (`schema.yaml`), and Python scripts (`app.py`, `main.py`, etc.) to jumpstart development.
 
----
-
 Explanation (Line by Line):
 
-#### **Imports**
+**Imports**
 
-```python
 import os
 from pathlib import Path
 import logging
-```
 
-1. **`os` module**: Provides utilities for interacting with the operating system, such as file path handling and directory creation.
-2. **`pathlib.Path`**: Offers an object-oriented approach to file system paths, making it easier to work with paths across different operating systems.
-3. **`logging`**: Facilitates the generation of log messages to monitor the script's activity, such as file creation or existing files.
 
----
+1. os module: Provides utilities for interacting with the operating system, 
+              such as file path handling and directory creation.
 
-#### **Logging Configuration**
-```python
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
-```
-- **Purpose**: Sets up the logging system to display messages of level `INFO` or higher. The `format` ensures log messages include the timestamp and the log message.
-- **Example**: If the script encounters a file that already exists, it will log a message like:
-  ```
-  2024-12-21 14:00:00 - File already exists: <path>
-  ```
+2. pathlib.Path: Offers an object-oriented approach to file system paths, 
+                 making it easier to work with paths across different operating systems.
 
----
+3. logging: Facilitates the generation of log messages to monitor the script's activity, 
+            such as file creation or existing files.
 
-#### **User Input Loop**
-```python
+**User Input Loop**
+
 while True:
     project_name = input("Enter your project name: ")
     if project_name.strip():  # Ensure project name is not empty or just spaces
         break
-```
-- **Logic**: Prompts the user to input a project name.
-- **`.strip()`**: Removes leading and trailing whitespaces to ensure a valid project name.
-- **Infinite Loop**: Ensures the user enters a non-empty project name.
-- **Example**: If the user enters ` MyProject `, the program will trim it to `MyProject`.
+
+- Logic:Prompts the user to input a project name.
+
+- .strip(): Removes leading and trailing whitespaces to ensure a valid project name.
+
+- Infinite Loop: Ensures the user enters a non-empty project name.
+
+- Example: If the user enters ` MyProject `, the program will trim it to `MyProject`.
 
 ---
 
-#### **List of Files**
-```python
+List of Files
+
 list_of_files = [
     f"{project_name}/__init__.py",
     f"{project_name}/components/__init__.py",
@@ -70,55 +63,65 @@ list_of_files = [
     "exception.py",
     "setup.py"
 ]
-```
-- **Purpose**: Defines the files and directories to be created. Subdirectories under the `project_name` will have their own `__init__.py` to mark them as Python packages.
+
+- Purpose: 
+
+Defines the files and directories to be created. Subdirectories under the `project_name` will have 
+their own `__init__.py` to mark them as Python packages.
 
 ---
 
-#### **File and Directory Creation Loop**
-```python
+File and Directory Creation Loop
+
+
 for filepth in list_of_files:
     filepath = Path(filepth)  # Convert string to a Path object
     filedir, filename = os.path.split(filepath)  # Split into directory and file name
-```
-- **`Path(filepth)`**: Converts the file path into a `Path` object for OS-independent path handling.
-- **`os.path.split(filepath)`**: Splits the file path into two parts:
-  - `filedir`: Directory path (e.g., `MyProject/components`).
-  - `filename`: File name (e.g., `__init__.py`).
+
+- Path(filepth): Converts the file path into a `Path` object for OS-independent path handling.
+- os.path.split(filepath): Splits the file path into two parts:
+- filedir: Directory path (e.g., `MyProject/components`).
+- filename: File name (e.g., `__init__.py`).
 
 ---
 
-#### **Directory Creation**
-```python
+Directory Creation
+
     if filedir != "":
         os.makedirs(filedir, exist_ok=True)
-```
-- **Logic**: Creates directories if they don't already exist.
-- **`exist_ok=True`**: Avoids raising an error if the directory already exists.
-- **Example**: If `MyProject/components` doesn't exist, it will be created.
+
+- Logic: Creates directories if they don't already exist.
+- exist_ok=True: Avoids raising an error if the directory already exists.
+- Example: If `MyProject/components` doesn't exist, it will be created.
 
 ---
 
-#### **File Creation**
-```python
+File Creation
+
     if (not os.path.exists(filepath)) or (os.path.getsize(filepath) == 0):
         with open(filepath, "w") as f:
             pass
-```
-- **Logic**:
+
+- Logic:
+
   1. Checks if the file doesn't exist (`not os.path.exists(filepath)`).
+
   2. Ensures the file is empty (`os.path.getsize(filepath) == 0`) if it exists.
-- **`with open(filepath, "w") as f:`**: Opens the file in write mode (`"w"`) and immediately closes it, creating an empty file.
+
+- with open(filepath, "w") as f: 
+Opens the file in write mode (`"w"`) and immediately closes it, 
+creating an empty file.
+
 - **Example**: Creates an empty `MyProject/components/__init__.py`.
 
 ---
 
-#### **Logging for Existing Files**
-```python
+Logging for Existing Files
+
     else:
         logging.info(f"File already exists: {filepath}")
-```
-- **Logic**: Logs a message if the file already exists and is non-empty.
+
+- Logic: Logs a message if the file already exists and is non-empty.
 
 ---
 
@@ -159,5 +162,6 @@ for filepth in list_of_files:
    2024-12-21 14:00:00 - File already exists: main.py
    ```
 
-This script ensures that a standard project structure is set up without manually creating each directory or file, saving time and effort for developers.
+This script ensures that a standard project structure is set up without manually creating each directory or file,
+saving time and effort for developers.
 

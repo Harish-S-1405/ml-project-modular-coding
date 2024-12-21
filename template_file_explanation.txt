@@ -1,16 +1,23 @@
 ### Objective:
-The script creates a project folder and a predefined set of subdirectories and files required for a typical Python project. This structure often includes modules for components, configuration, constants, entities, exceptions, logging, pipelines, utilities, and others. Additionally, it creates configuration files (`config.yaml`), a schema file (`schema.yaml`), and Python scripts (`app.py`, `main.py`, etc.) to jumpstart development.
+
+The script creates a project folder and a predefined set of subdirectories and files required 
+for a typical Python project. This structure often includes modules for components, configuration,
+constants, entities, exceptions, logging, pipelines, utilities, and others. 
+Additionally, it creates configuration files (`config.yaml`), 
+a schema file (`schema.yaml`), and Python scripts (`app.py`, `main.py`, etc.) to jumpstart development.
 
 ---
 
-### Explanation (Line by Line):
+Explanation (Line by Line):
 
 #### **Imports**
+
 ```python
 import os
 from pathlib import Path
 import logging
 ```
+
 1. **`os` module**: Provides utilities for interacting with the operating system, such as file path handling and directory creation.
 2. **`pathlib.Path`**: Offers an object-oriented approach to file system paths, making it easier to work with paths across different operating systems.
 3. **`logging`**: Facilitates the generation of log messages to monitor the script's activity, such as file creation or existing files.
@@ -147,7 +154,7 @@ for filepth in list_of_files:
    exception.py
    setup.py
    ```
-3. If a file (e.g., `main.py`) already exists, the script logs:
+3. If a file (e.g., `main.py`) already exists, the script logs: 
    ```
    2024-12-21 14:00:00 - File already exists: main.py
    ```
